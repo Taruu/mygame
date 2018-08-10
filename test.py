@@ -1,52 +1,48 @@
 import arcade
-
-# Задать константы для размеров экрана
-SCREEN_WIDTH = 600
+import random
+SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
+MOVEMENT_SPEED = 5
+KEY_STATUS= 0000
+class MyGame(arcade.Window):
+    """ Главный класс приложения. """
 
-# Открыть окно. Задать заголовок и размеры окна (ширина и высота)
-arcade.open_window(SCREEN_WIDTH, SCREEN_HEIGHT, "Drawing Example")
+    def __init__(self, width, height):
+        super().__init__(width, height)
 
-# Задать белый цвет фона.
-# Для просмотра списка названий цветов прочитайте:
-# http://arcade.academy/arcade.color.html
-# Цвета также можно задавать в (красный, зеленый, синий) и
-# (красный, зеленый, синий, альфа) формате.
-arcade.set_background_color(arcade.color.WHITE)
+        arcade.set_background_color(arcade.color.AMAZON)
+    def on_key_press(self, key, modifiers):
+        print('нажата %d' % key)
 
-# Начать процесс рендера. Это нужно сделать до команд рисования
-arcade.start_render()
+    def on_key_release(self, key, modifiers):
+        print('отпустили %d' % key)
 
-# Нарисовать лицо
-x = 300
-y = 300
-radius = 200
-arcade.draw_circle_filled(x, y, radius, arcade.color.YELLOW)
 
-# Нарисовать правый глаз
-x = 370
-y = 350
-radius = 20
-arcade.draw_circle_filled(x, y, radius, arcade.color.BLACK)
+    def setup(self):
+        # Настроить игру здесь
 
-# Нарисовать левый глаз
-x = 230
-y = 350
-radius = 20
-arcade.draw_circle_filled(x, y, radius, arcade.color.BLACK)
+        pass
 
-# Нарисовать улыбку
-x = 300
-y = 280
-width = 120
-height = 100
-start_angle = 190
-end_angle = 350
-arcade.draw_arc_outline(x, y, width, height, arcade.color.BLACK, start_angle,
-                        end_angle, 10)
+    def on_draw(self):
+        """ Отрендерить этот экран. """
+        arcade.start_render()
 
-# Завершить рисование и показать результат
-arcade.finish_render()
+        # Здесь код рисунка
 
-# Держать окно открытым до тех пор, пока пользователь не нажмет кнопку “закрыть”
-arcade.run()
+    def update(self, delta_time):
+        """ Здесь вся игровая логика и логика перемещения."""
+
+
+        pass
+
+
+
+
+def main():
+    game = MyGame(SCREEN_WIDTH, SCREEN_HEIGHT)
+    game.setup()
+    arcade.run()
+
+
+if __name__ == "__main__":
+    main() 
